@@ -1,0 +1,33 @@
+const router = require('express').Router();
+
+router.use('/auth', require('./auth'));
+router.use('/hostels', require('./hostels'));
+router.use('/branches', require('./branches'));
+router.use('/students', require('./students'));
+router.use('/rooms', require('./rooms'));
+router.use('/admissions', require('./admissions'));
+router.use('/billing', require('./billing'));
+router.use('/expenses', require('./expenses'));
+router.use('/food', require('./food'));
+router.use('/utilities', require('./utilities'));
+router.use('/attendance', require('./attendance'));
+router.use('/leaves', require('./leaves'));
+router.use('/visitors', require('./visitors'));
+router.use('/complaints', require('./complaints'));
+router.use('/maintenance', require('./maintenance'));
+router.use('/inventory', require('./inventory'));
+router.use('/staff', require('./staff'));
+router.use('/payroll', require('./payroll'));
+router.use('/notices', require('./notices'));
+router.use('/notifications', require('./notifications'));
+router.use('/reports', require('./reports'));
+router.use('/search', require('./search'));
+router.use('/documents', require('./documents'));
+router.use('/dashboard', require('./dashboard'));
+router.use('/settings', require('./settings'));
+router.use('/users', require('./users'));
+router.use('/audit', require('./audit'));
+router.use('/student', require('./student'));
+router.use('/admin', require('./admin'));
+
+module.exports = router;

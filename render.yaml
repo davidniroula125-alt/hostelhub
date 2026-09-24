@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: hostelhub
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: CLIENT_URL
+        fromService:
+          type: web
+          name: hostelhub
+          envVarKey: RENDER_EXTERNAL_URL
+      - key: DEMO_SEED
+        value: "true"
+      - key: RATE_LIMIT_MAX
+        value: "5000"
+      - key: AUTH_RATE_LIMIT_MAX
+        value: "500"
+      - key: UPLOAD_DIR
+        value: uploads
+      - key: MAX_UPLOAD_MB
+        value: "10"
