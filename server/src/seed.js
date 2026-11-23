@@ -24,6 +24,88 @@ const PLANS = [
   }
 ];
 
+const SUNRISE_SPEC = {
+  slug: 'sunrise-boys-hostel',
+  name: 'Sunrise Boys Hostel',
+  code: 'SUNRISE-BH',
+  type: 'boys',
+  ownerName: 'Ram Prasad Shrestha',
+  ownerEmail: 'owner@sunrise.example.com',
+  ownerPhone: '9841001122',
+  registrationNumber: 'NEP-H-2024-0112',
+  address: { street: 'Gaushala-11', province: 'Bagmati', district: 'Kathmandu', municipality: 'Kathmandu Metropolitan City', ward: '11' },
+  phone: '9841001122',
+  altPhone: '01-4112233',
+  email: 'sunrise@hostelhub.app',
+  website: 'https://sunrisehostel.example.com',
+  description: 'Affordable boys hostel near college campus.',
+  invoicePrefix: 'SRN',
+  receiptPrefix: 'SRR',
+  invoiceFooter: 'Thank you! Late fee of Rs. 50 applies after the due date.',
+  amenities: ['WiFi', 'Hot water', 'CCTV', 'Study room', 'Generator'],
+  emailDomain: 'student.example.com',
+  foodPlan: { name: 'Full Board Monthly', type: 'monthly', amount: 5500, description: 'Breakfast, lunch and dinner - full month' },
+  students: [
+    { name: 'Ram Thapa', gender: 'male', phone: '9842001001', college: 'Trinity International College', course: 'BSc CSIT', monthlyRent: 12000 },
+    { name: 'Hari Sharma', gender: 'male', phone: '9842001002', college: 'Prime College', course: 'BBA', monthlyRent: 12000 },
+    { name: 'Sita Gurung', gender: 'male', phone: '9842001003', college: 'NCCS', course: 'BSc CSIT', monthlyRent: 10500 },
+    { name: 'Krishna Maharjan', gender: 'male', phone: '9842001004', college: 'Islington College', course: 'BHM', monthlyRent: 10500 },
+    { name: 'Bikash Tamang', gender: 'male', phone: '9842001005', college: 'Kathmandu University', course: 'BE Civil', monthlyRent: 14500 },
+    { name: 'Suman KC', gender: 'male', phone: '9842001006', college: 'Patan College', course: 'BSW', monthlyRent: 9500 },
+    { name: 'Dipesh Basnet', gender: 'male', phone: '9842001007', college: 'Texas College', course: '+2 Science', monthlyRent: 9500 },
+    { name: 'Nabin Adhikari', gender: 'male', phone: '9842001008', college: 'Trinity International', course: 'BBS', monthlyRent: 12000 }
+  ],
+  roomConfig: [
+    { roomNumber: '101', floor: '1', beds: 4, rent: 9500 },
+    { roomNumber: '102', floor: '1', beds: 4, rent: 9500 },
+    { roomNumber: '103', floor: '1', beds: 4, rent: 10500 },
+    { roomNumber: '201', floor: '2', beds: 4, rent: 12000 },
+    { roomNumber: '202', floor: '2', beds: 4, rent: 14500 }
+  ]
+};
+
+const BHAKTAPUR_SPEC = {
+  slug: 'bhaktapur-hostel',
+  name: 'Bhaktapur Hostel',
+  code: 'BKT-BH',
+  type: 'boys',
+  ownerName: 'Shyam Prasad Karki',
+  ownerEmail: 'owner@bhaktapur.example.com',
+  ownerPhone: '9851002233',
+  registrationNumber: 'NEP-H-2024-0245',
+  address: { street: 'Suryabinayak-3', province: 'Bagmati', district: 'Bhaktapur', municipality: 'Suryabinayak Municipality', ward: '3' },
+  phone: '9851002233',
+  altPhone: '01-6210455',
+  email: 'bhaktapur@hostelhub.app',
+  website: 'https://bhaktapurhostel.example.com',
+  description: 'Boys hostel in Bhaktapur near Khwopa and Multi-Media campuses, with mess and study room.',
+  invoicePrefix: 'BKT',
+  receiptPrefix: 'BKR',
+  invoiceFooter: 'Thank you! Late fee of Rs. 50 applies after the due date.',
+  amenities: ['WiFi', 'Hot water', 'CCTV', 'Study room', 'Laundry'],
+  emailDomain: 'student.bhaktapur.example.com',
+  foodPlan: { name: 'Full Board Monthly', type: 'monthly', amount: 5000, description: 'Breakfast, lunch and dinner - full month' },
+  students: [
+    { name: 'Nimesh Shrestha', gender: 'male', phone: '9843001001', college: 'Khwopa College', course: 'BSc CSIT', monthlyRent: 11000 },
+    { name: 'Prakriti Dangol', gender: 'male', phone: '9843001002', college: 'Nepal Multi-Media Campus', course: 'BBA', monthlyRent: 10500 },
+    { name: 'Sujan Bajracharya', gender: 'male', phone: '9843001003', college: "St. Xavier's College, Bhaktapur", course: '+2 Science', monthlyRent: 9500 },
+    { name: 'Aayush Maharjan', gender: 'male', phone: '9843001004', college: 'Kathmandu University', course: 'BE Computer', monthlyRent: 14500 },
+    { name: 'Riya Khadgi', gender: 'male', phone: '9843001005', college: 'Khwopa College', course: 'BEd', monthlyRent: 10500 },
+    { name: 'Bibek Chaulagain', gender: 'male', phone: '9843001006', college: 'Nepal Multi-Media Campus', course: 'BBS', monthlyRent: 11000 },
+    { name: 'Sanju Tamang', gender: 'male', phone: '9843001007', college: "St. Xavier's College, Bhaktapur", course: 'BSc Nursing', monthlyRent: 12000 },
+    { name: 'Dipesh Prajapati', gender: 'male', phone: '9843001008', college: 'Kathmandu University', course: 'MBA', monthlyRent: 14000 }
+  ],
+  roomConfig: [
+    { roomNumber: '101', floor: '1', beds: 4, rent: 9000 },
+    { roomNumber: '102', floor: '1', beds: 4, rent: 9000 },
+    { roomNumber: '103', floor: '1', beds: 4, rent: 10000 },
+    { roomNumber: '201', floor: '2', beds: 4, rent: 11500 },
+    { roomNumber: '202', floor: '2', beds: 4, rent: 13500 }
+  ]
+};
+
+const DEMO_SPECS = [SUNRISE_SPEC, BHAKTAPUR_SPEC];
+
 async function seedPlans() {
   for (const p of PLANS) {
     await SubscriptionPlan.updateOne({ code: p.code }, { $set: p }, { upsert: true });
@@ -46,61 +128,56 @@ async function seedSuperAdmin() {
   }
 }
 
-async function seedDemoHostel(force) {
-  const existing = await Hostel.findOne({ slug: 'sunrise-boys-hostel' });
+async function seedDemoHostel(spec, force) {
+  const existing = await Hostel.findOne({ slug: spec.slug });
   if (existing && !force) {
-    console.log('[seed] demo hostel already exists');
+    console.log(`[seed] demo hostel already exists: ${spec.name}`);
     return existing;
   }
   if (existing && force) {
-    await mongoose.connection.dropCollection('students');
-    await mongoose.connection.dropCollection('rooms');
-    await mongoose.connection.dropCollection('invoices');
-    await mongoose.connection.dropCollection('payments');
-    await mongoose.connection.dropCollection('admissions');
-    await mongoose.connection.dropCollection('foodplans');
-    await mongoose.connection.dropCollection('foodassignments');
-    await mongoose.connection.dropCollection('expenses');
-    await mongoose.connection.dropCollection('notices');
+    for (const col of ['students', 'rooms', 'invoices', 'payments', 'admissions', 'foodplans', 'foodassignments', 'expenses', 'notices']) {
+      // eslint-disable-next-line no-await-in-loop
+      await mongoose.connection.collection(col).deleteMany({ hostel: existing._id });
+    }
   }
 
   const plan = await SubscriptionPlan.findOne({ code: 'STANDARD' });
   const hostel = existing || (await Hostel.create({
-    name: 'Sunrise Boys Hostel',
-    slug: 'sunrise-boys-hostel',
-    code: 'SUNRISE-BH',
-    type: 'boys',
-    ownerName: 'Ram Prasad Shrestha',
-    registrationNumber: 'NEP-H-2024-0112',
-    address: { street: 'Gaushala-11', province: 'Bagmati', district: 'Kathmandu', municipality: 'Kathmandu Metropolitan City', ward: '11' },
-    phone: '9841001122',
-    altPhone: '01-4112233',
-    email: 'sunrise@hostelhub.app',
-    website: 'https://sunrisehostel.example.com',
-    description: 'Affordable boys hostel near college campus.',
-    emergencyContact: { name: 'Ram Prasad Shrestha', phone: '9841001122' },
+    name: spec.name,
+    slug: spec.slug,
+    code: spec.code,
+    type: spec.type,
+    ownerName: spec.ownerName,
+    registrationNumber: spec.registrationNumber,
+    address: spec.address,
+    phone: spec.phone,
+    altPhone: spec.altPhone,
+    email: spec.email,
+    website: spec.website,
+    description: spec.description,
+    emergencyContact: { name: spec.ownerName, phone: spec.ownerPhone },
     status: 'active',
     plan: plan._id,
     settings: {
-      currency: 'NPR', invoicePrefix: 'SRN', receiptPrefix: 'SRR', dueDay: 5, lateFee: 50,
-      invoiceFooter: 'Thank you! Late fee of Rs. 50 applies after the due date.',
+      currency: 'NPR', invoicePrefix: spec.invoicePrefix, receiptPrefix: spec.receiptPrefix, dueDay: 5, lateFee: 50,
+      invoiceFooter: spec.invoiceFooter,
       mealPrices: { breakfast: 50, lunch: 100, dinner: 100, snacks: 30 },
       roomTypes: ['Single', 'Double', 'Triple', 'Four-bed', 'Five-bed', 'Custom']
     },
-    amenities: ['WiFi', 'Hot water', 'CCTV', 'Study room', 'Generator']
+    amenities: spec.amenities
   }));
 
-  const owner = await User.findOne({ email: 'owner@sunrise.example.com' });
+  const owner = await User.findOne({ email: spec.ownerEmail });
   if (!owner) {
     await User.create({
-      name: 'Ram Prasad Shrestha',
-      email: 'owner@sunrise.example.com',
-      phone: '9841001122',
+      name: spec.ownerName,
+      email: spec.ownerEmail,
+      phone: spec.ownerPhone,
       password: 'owner123',
       role: ROLES.OWNER,
       hostel: hostel._id
     });
-    console.log('[seed] demo owner: owner@sunrise.example.com / owner123');
+    console.log(`[seed] demo owner: ${spec.ownerEmail} / owner123`);
   }
 
   const sub = await Subscription.findOne({ hostel: hostel._id });
@@ -120,12 +197,12 @@ async function seedDemoHostel(force) {
   if (!foodPlan) {
     await FoodPlan.create({
       hostel: hostel._id,
-      name: 'Full Board Monthly',
-      type: 'monthly',
-      amount: 5500,
+      name: spec.foodPlan.name,
+      type: spec.foodPlan.type,
+      amount: spec.foodPlan.amount,
       meals: { breakfast: true, lunch: true, dinner: true, snacks: false },
       mealPrices: { breakfast: 50, lunch: 100, dinner: 100, snacks: 30 },
-      description: 'Breakfast, lunch and dinner - full month'
+      description: spec.foodPlan.description
     });
   }
 
@@ -162,24 +239,9 @@ async function seedDemoHostel(force) {
     ]);
   }
 
-  const demoStudents = [
-    { name: 'Ram Thapa', phone: '9842001001', college: 'Trinity International College', course: 'BSc CSIT', monthlyRent: 12000 },
-    { name: 'Hari Sharma', phone: '9842001002', college: 'Prime College', course: 'BBA', monthlyRent: 12000 },
-    { name: 'Sita Gurung', phone: '9842001003', college: 'NCCS', course: 'BSc CSIT', monthlyRent: 10500 },
-    { name: 'Krishna Maharjan', phone: '9842001004', college: 'Islington College', course: 'BHM', monthlyRent: 10500 },
-    { name: 'Bikash Tamang', phone: '9842001005', college: 'Kathmandu University', course: 'BE Civil', monthlyRent: 14500 },
-    { name: 'Suman KC', phone: '9842001006', college: 'Patan College', course: 'BSW', monthlyRent: 9500 },
-    { name: 'Dipesh Basnet', phone: '9842001007', college: 'Texas College', course: '+2 Science', monthlyRent: 9500 },
-    { name: 'Nabin Adhikari', phone: '9842001008', college: 'Trinity International', course: 'BBS', monthlyRent: 12000 }
-  ];
+  const demoStudents = spec.students;
 
-  const roomConfig = [
-    { roomNumber: '101', floor: '1', beds: 4, rent: 9500 },
-    { roomNumber: '102', floor: '1', beds: 4, rent: 9500 },
-    { roomNumber: '103', floor: '1', beds: 4, rent: 10500 },
-    { roomNumber: '201', floor: '2', beds: 4, rent: 12000 },
-    { roomNumber: '202', floor: '2', beds: 4, rent: 14500 }
-  ];
+  const roomConfig = spec.roomConfig;
 
   const existingStudentCount = await Student.countDocuments({ hostel: hostel._id });
   const hostelsRoomCount = await Room.countDocuments({ hostel: hostel._id });
@@ -200,21 +262,19 @@ async function seedDemoHostel(force) {
       rooms.push(room);
     }
 
-    let bedCursor = 0;
     const beds = rooms.flatMap((r, ri) => r.beds.map((b) => ({ room: r, bed: b, idx: ri })));
-    const createdUsers = [];
     for (let i = 0; i < demoStudents.length && i < 8; i++) {
       const s = demoStudents[i];
       const target = beds[i];
       const student = await Student.create({
         hostel: hostel._id,
         name: s.name,
-        gender: 'male',
+        gender: s.gender || 'male',
         nationality: 'Nepali',
         phone: s.phone,
-        email: `${s.name.toLowerCase().replace(/\s+/g, '.')}@student.example.com`,
+        email: `${s.name.toLowerCase().replace(/\s+/g, '.')}@${spec.emailDomain}`,
         permanentAddress: 'Nepal',
-        currentAddress: 'Kathmandu',
+        currentAddress: spec.address.district,
         college: s.college,
         course: s.course,
         level: 'Bachelor',
@@ -241,7 +301,7 @@ async function seedDemoHostel(force) {
       student.bedLabel = bed.label;
       await student.save();
 
-      const user = await User.create({
+      await User.create({
         name: student.name,
         email: student.email,
         phone: student.phone,
@@ -250,7 +310,6 @@ async function seedDemoHostel(force) {
         hostel: hostel._id,
         student: student._id
       });
-      createdUsers.push(user);
 
       const admissionNumber = await getCounter(hostel._id, 'admission');
       await require('./models/Admission').create({
@@ -309,7 +368,7 @@ async function seedDemoHostel(force) {
         amount: total,
         date: new Date(2026, 8, st._id.toString().length % 4 + 2),
         method: 'cash',
-        receivedByName: 'Ram Prasad Shrestha',
+        receivedByName: spec.ownerName,
         gateway: 'manual',
         previousBalance: total,
         remainingBalance: 0,
@@ -325,7 +384,10 @@ async function ensureSeed(force = false) {
   await seedPlans();
   await seedSuperAdmin();
   if (config.demoSeed && !process.env.SKIP_DEMO) {
-    await seedDemoHostel(force);
+    for (const spec of DEMO_SPECS) {
+      // eslint-disable-next-line no-await-in-loop
+      await seedDemoHostel(spec, force);
+    }
   }
 }
 
