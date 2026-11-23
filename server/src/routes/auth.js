@@ -19,6 +19,7 @@ const registerSchema = {
   hostelCode: []
 };
 
+router.get('/hostel-code/check', authLimiter, auth.checkHostelCode);
 router.post('/register', authLimiter, validate(registerSchema), auth.register);
 router.post('/login', authLimiter, validate(loginSchema), auth.login);
 router.post('/logout', auth.logout);

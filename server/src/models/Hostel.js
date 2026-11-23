@@ -52,16 +52,33 @@ const hostelSchema = new mongoose.Schema(
 );
 
 hostelSchema.pre('validate', function (next) {
-  if (this.name && !this.slug) {
-    this.slug = this.name
-      .toLowerCase()
-      .trim()
-      .replace(/[^a-z0-9\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-');
-  }
   if (this.code) this.code = this.code.trim().toUpperCase();
   next();
+});
+
+hostelSchema.pre('save', async function (next) {
+  try {
+    if (this.isNew && !this.slug && this.name) {
+      const base =
+        this.name
+          .toLowerCase()
+          .trim()
+          .replace(/[^a-z0-9\s-]/g, '')
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-') || 'hostel';
+      let candidate = base;
+      for (let i = 0; i < 25; i += 1) {
+        // eslint-disable-next-line no-await-in-loop
+        const clash = await this.constructor.exists({ slug: candidate });
+        if (!clash) break;
+        candidate = `${base}-${Math.random().toString(36).slice(2, 6)}`;
+      }
+      this.slug = candidate;
+    }
+    next();
+  } catch (err) {
+    next(err);
+  }
 });
 
 hostelSchema.statics.generateCode = async function () {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { House, Lock, Mail, ShieldCheck } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
@@ -9,7 +9,6 @@ import { useToast } from '../context/ToastContext';
 import { Spinner } from '../components/ui';
 
 const DEMO = {
-  owner: { email: 'owner@sunrise.example.com', password: 'owner123' },
   super: { email: 'admin@hostelhub.app', password: 'SuperAdmin@123' }
 };
 
@@ -162,16 +161,18 @@ export default function Login() {
             </button>
           </form>
 
+          <p className="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">
+            New to HostelHub?{' '}
+            <Link to="/register" className="font-semibold text-brand-600 hover:underline">
+              Create your hostel
+            </Link>
+          </p>
+
           <div className="mt-6 rounded-xl border border-dashed border-slate-300 p-3 dark:border-slate-700">
-            <p className="mb-2 text-[10px] font-bold uppercase tracking-widest text-slate-400">Demo accounts</p>
-            <div className="flex gap-2">
-              <button onClick={() => fill('owner')} className="flex-1 rounded-lg border border-slate-200 px-2 py-1.5 text-xs text-slate-600 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800">
-                Owner
-              </button>
-              <button onClick={() => fill('super')} className="flex-1 rounded-lg border border-slate-200 px-2 py-1.5 text-xs text-slate-600 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800">
-                Super Admin
-              </button>
-            </div>
+            <p className="mb-2 text-[10px] font-bold uppercase tracking-widest text-slate-400">Quick fill</p>
+            <button onClick={() => fill('super')} className="w-full rounded-lg border border-slate-200 px-2 py-1.5 text-xs text-slate-600 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800">
+              Super Admin credentials
+            </button>
           </div>
         </div>
       </div>

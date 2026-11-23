@@ -299,3 +299,46 @@ test('19. Subscription limits enforced by admin on plan', async () => {
   const basic = plans.find((p) => p.code === 'BASIC');
   assert.strictEqual(basic.maxStudents, 50);
 });
+
+test('20. Custom hostel ID: availability check + self registration', async () => {
+  const bad = await request(app).get('/api/auth/hostel-code/check').query({ code: 'ab' }).expect(200);
+  assert.strictEqual(bad.body.data.valid, false);
+
+  const free = await request(app).get('/api/auth/hostel-code/check').query({ code: 'my-hostel-1' }).expect(200);
+  assert.deepStrictEqual(free.body.data, { code: 'MY-HOSTEL-1', valid: true, available: true });
+
+  const reg = await request(app)
+    .post('/api/auth/register')
+    .send({
+      name: 'Bikash Thapa',
+      hostelName: 'Everest Girls Hostel',
+      hostelType: 'boys',
+      email: 'bikash.custom@example.com',
+      phone: '9800000001',
+      password: 'secret123',
+      planCode: 'BASIC',
+      hostelCode: 'my-hostel-1'
+    })
+    .expect(201);
+  assert.strictEqual(reg.body.hostel.code, 'MY-HOSTEL-1');
+  assert.ok(reg.body.token);
+
+  const taken = await request(app).get('/api/auth/hostel-code/check').query({ code: 'my-hostel-1' }).expect(200);
+  assert.strictEqual(taken.body.data.available, false);
+
+  await request(app)
+    .post('/api/auth/register')
+    .send({ name: 'Dup User', hostelName: 'Another Hostel', email: 'dup.code@example.com', password: 'secret123', hostelCode: 'my-hostel-1' })
+    .expect(409);
+
+  await request(app)
+    .post('/api/auth/register')
+    .send({ name: 'Bad User', hostelName: 'Bad Code Hostel', email: 'bad.code@example.com', password: 'secret123', hostelCode: 'ab' })
+    .expect(400);
+
+  const login = await request(app)
+    .post('/api/auth/login')
+    .send({ email: 'bikash.custom@example.com', password: 'secret123' })
+    .expect(200);
+  assert.ok(login.body.token);
+});

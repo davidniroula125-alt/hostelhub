@@ -28,6 +28,17 @@ const attachUserContext = async (user) => {
   return { user: user.toSafeJSON(), hostel, student };
 };
 
+const CODE_RE = /^[A-Z0-9][A-Z0-9_-]{2,19}$/;
+
+exports.checkHostelCode = catchAsync(async (req, res) => {
+  const code = String(req.query.code || '').trim().toUpperCase();
+  if (!CODE_RE.test(code)) {
+    return res.json({ success: true, data: { code, valid: false, available: false } });
+  }
+  const exists = await Hostel.exists({ code });
+  res.json({ success: true, data: { code, valid: true, available: !exists } });
+});
+
 exports.register = catchAsync(async (req, res, next) => {
   const { name, hostelName, hostelType, email, phone, password, planCode = 'BASIC', hostelCode } = req.body;
 
@@ -36,7 +47,7 @@ exports.register = catchAsync(async (req, res, next) => {
 
   let code = (hostelCode || '').trim().toUpperCase();
   if (code) {
-    if (!/^[A-Z0-9][A-Z0-9_-]{2,19}$/.test(code)) {
+    if (!CODE_RE.test(code)) {
       return next(new AppError('Hostel ID must be 3–20 chars (letters, numbers, - or _)', 400));
     }
     const clash = await Hostel.exists({ code });

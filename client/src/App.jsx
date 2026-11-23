@@ -6,6 +6,7 @@ import Layout from './components/Layout';
 import { LoadingPage } from './components/ui';
 
 const Login = lazy(() => import('./pages/Login.jsx'));
+const Register = lazy(() => import('./pages/Register.jsx'));
 const Dashboard = lazy(() => import('./pages/Dashboard.jsx'));
 const Students = lazy(() => import('./pages/Students.jsx'));
 const StudentDetail = lazy(() => import('./pages/StudentDetail.jsx'));
@@ -57,6 +58,7 @@ function App() {
   return (
     <Routes>
       <Route path="/login" element={<Page><Login /></Page>} />
+      <Route path="/register" element={<Page><Register /></Page>} />
       <Route path="/" element={<HomeRedirect />} />
 
       <Route

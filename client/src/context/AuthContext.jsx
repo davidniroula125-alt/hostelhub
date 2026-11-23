@@ -29,6 +29,12 @@ export const AuthProvider = ({ children }) => {
     return data.user;
   }, []);
 
+  const register = useCallback(async (payload) => {
+    const { data } = await api.post('/auth/register', payload);
+    persist(data.token, data.user);
+    return data.user;
+  }, []);
+
   const adminLogin = useCallback(async (credentials) => {
     const { data } = await api.post('/admin/login', credentials);
     const user = data.data || data.user || { name: 'Super Admin', role: 'superadmin' };
@@ -50,12 +56,13 @@ export const AuthProvider = ({ children }) => {
       user,
       booting,
       login,
+      register,
       adminLogin,
       logout,
       isSuperAdmin: user?.role === 'superadmin',
       isStudent: user?.role === 'student'
     }),
-    [token, user, booting, login, adminLogin, logout]
+    [token, user, booting, login, register, adminLogin, logout]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
