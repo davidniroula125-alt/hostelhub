@@ -8,6 +8,7 @@ const config = require('./config');
 const connectDB = require('./config/db');
 const { limiter } = require('./middleware/rateLimiter');
 const routes = require('./routes');
+const { ensureSeed } = require('./seed');
 const { notFound, errorHandler } = require('./middleware/error');
 
 const app = express();
@@ -48,10 +49,7 @@ app.use(errorHandler);
 const start = async () => {
   try {
     await connectDB();
-    if (config.demoSeed) {
-      const { ensureSeed } = require('./seed');
-      await ensureSeed();
-    }
+    await ensureSeed();
     app.listen(config.port, () => {
       console.log(`[server] HostelHub API running on http://localhost:${config.port} (${config.env})`);
     });

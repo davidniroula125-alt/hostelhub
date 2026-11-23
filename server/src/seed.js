@@ -380,23 +380,26 @@ async function seedDemoHostel(spec, force) {
   return hostel;
 }
 
-async function ensureSeed(force = false) {
+async function ensureSeed() {
   await seedPlans();
   await seedSuperAdmin();
-  if (config.demoSeed && !process.env.SKIP_DEMO) {
-    for (const spec of DEMO_SPECS) {
-      // eslint-disable-next-line no-await-in-loop
-      await seedDemoHostel(spec, force);
-    }
+}
+
+async function seedDemo(force = false) {
+  for (const spec of DEMO_SPECS) {
+    // eslint-disable-next-line no-await-in-loop
+    await seedDemoHostel(spec, force);
   }
 }
 
 if (require.main === module) {
   const force = process.argv.includes('--force');
+  const demo = process.argv.includes('--demo');
   const run = async () => {
     await mongoose.connect(config.mongoUri, { serverSelectionTimeoutMS: 20000 });
     console.log('[seed] connected to MongoDB');
-    await ensureSeed(force);
+    await ensureSeed();
+    if (demo) await seedDemo(force);
     console.log('[seed] done');
     process.exit(0);
   };
@@ -406,4 +409,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { ensureSeed, seedPlans, seedSuperAdmin };
+module.exports = { ensureSeed, seedDemo, seedPlans, seedSuperAdmin };

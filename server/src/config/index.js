@@ -19,6 +19,5 @@ module.exports = {
     password: env('SMTP_PASSWORD', ''),
     from: env('SMTP_FROM', 'HostelHub <no-reply@hostelhub.app>')
   },
-  rateLimitMax: parseInt(env('RATE_LIMIT_MAX', '5000'), 10),
-  demoSeed: env('DEMO_SEED', 'true') === 'true'
+  rateLimitMax: parseInt(env('RATE_LIMIT_MAX', '5000'), 10)
 };

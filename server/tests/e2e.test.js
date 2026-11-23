@@ -1,5 +1,4 @@
 process.env.NODE_ENV = 'test';
-process.env.DEMO_SEED = 'false';
 process.env.MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/hostelhub_test';
 
 const { test, before, after } = require('node:test');

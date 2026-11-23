@@ -78,10 +78,11 @@ Key variables: `MONGODB_URI` (include `?replicaSet=rs0`), `JWT_SECRET`, optional
 
 ```bash
 npm install             # or: npm run install:all
-npm run seed            # demo hostel, plans, rooms, students, users
+npm run seed            # subscription plans + super admin (no demo data)
+npm run seed:demo       # optional: demo hostels with sample rooms/students/invoices
 ```
 
-The seed creates the dream hostel "Sunrise Hostel" (`sunrise.example.com`) with demo owner, staff, 5 rooms, 8 students, and SUBSCRIPTION plan codes (`BASIC`/`STANDARD`/`PREMIUM`).
+`npm run seed` only creates the subscription plans (`BASIC`/`STANDARD`/`PREMIUM`) and the super admin account — no dummy data.
 
 ### 4. Run
 
@@ -91,16 +92,13 @@ npm run dev             # API on :5000 + client (Vite) on :5173, proxying /api
 
 Or separately: `npm run dev:server`, `npm run dev:client`.
 
-### 5. Demo logins
+### 5. Logins
 
 | Role        | Email                      | Password        |
 | ----------- | -------------------------- | --------------- |
 | Super admin | `admin@hostelhub.app`      | `SuperAdmin@123` |
-| Owner       | `owner@sunrise.example.com`| `owner123`      |
-| Manager     | `manager@sunrise.example.com` | `manager123` |
-| Accounant   | `accountant@sunrise.example.com` | `accountant123` |
-| Warden      | `warden@sunrise.example.com` | `warden123` |
-| Student     | (`student_<id>@student.hostelhub.app` / `student123`) | `student123` |
+
+No dummy users or hostels are created by default. Register a hostel from the app, or run `npm run seed:demo` locally to get the sample hostels (`owner@sunrise.example.com` / `owner123`, `owner@bhaktapur.example.com` / `owner123`).
 
 ## Testing
 
@@ -124,6 +122,6 @@ npm run build    # production build of the web client (→ client/dist)
 4. Set env var `MONGODB_URI` when prompted (other vars come from the blueprint).
 5. After the first deploy, open `https://<service>.onrender.com` (SPA + `/api` on one origin).
 
-Super admin after first boot (`DEMO_SEED=true`): `admin@hostelhub.app` / `SuperAdmin@123`.
+Super admin after first boot: `admin@hostelhub.app` / `SuperAdmin@123` (no demo data is seeded).
 
 Build/start used by Render: `npm install && npm run build` → `npm start` (health: `/api/health`).
