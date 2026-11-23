@@ -1,0 +1,13 @@
+node_modules
+**/node_modules
+**/dist
+.git
+.kilo
+**/*.log
+*.log
+.env
+**/.env
+!**/.env.example
+uploads
+**/uploads
+client/vite.log
