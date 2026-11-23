@@ -138,7 +138,7 @@ const SidebarContent = ({ user, onNavigate, isOpen, onClose }) => {
           <p className="text-[10px] font-medium text-slate-400">{isSuperAdmin ? 'SaaS Console' : user?.hostelName || 'Hostel Management'}</p>
         </div>
         {isOpen ? (
-          <button onClick={onClose} className="rounded-lg p-1 text-slate-400 hover:bg-slate-100 sm:hidden dark:hover:bg-slate-800">
+          <button onClick={onClose} className="rounded-lg p-1 text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Close menu">
             <X size={18} />
           </button>
         ) : null}
@@ -452,8 +452,17 @@ export default function Layout({ children }) {
   return (
     <TitleContext.Provider value={titleApi}>
       <div className="flex h-full">
-        <aside className="fixed inset-y-0 left-0 z-40 w-64 -translate-x-full border-r border-slate-200 bg-white transition-transform duration-200 dark:border-slate-800 dark:bg-slate-900 lg:static lg:translate-x-0">
-          <SidebarContent user={user} onNavigate={() => setSidebarOpen(false)} />
+        <aside
+          className={`fixed inset-y-0 left-0 z-40 w-64 border-r border-slate-200 bg-white transition-transform duration-200 dark:border-slate-800 dark:bg-slate-900 lg:static lg:translate-x-0 ${
+            sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}
+        >
+          <SidebarContent
+            user={user}
+            onNavigate={() => setSidebarOpen(false)}
+            isOpen={sidebarOpen}
+            onClose={() => setSidebarOpen(false)}
+          />
         </aside>
         {sidebarOpen ? (
           <div className="fixed inset-0 z-30 bg-slate-900/50 lg:hidden" onClick={() => setSidebarOpen(false)} />
