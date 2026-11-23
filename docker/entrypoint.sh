@@ -2,9 +2,6 @@
 set -euo pipefail
 
 mkdir -p /data/db /var/log/mongodb
-touch /var/log/mongodb/mongod.log
-tail -n +1 -f /var/log/mongodb/mongod.log &
-LOG_TAIL_PID=$!
 
 mongod_alive() {
   for d in /proc/[0-9]*; do
@@ -14,8 +11,8 @@ mongod_alive() {
 }
 
 dump_log() {
-  echo "[entrypoint] ==== mongod log (last 100 lines) ===="
-  tail -n 100 /var/log/mongodb/mongod.log || true
+  echo "[entrypoint] ==== mongod log (last 60 lines) ===="
+  tail -n 60 /var/log/mongodb/mongod.log || true
   echo "[entrypoint] ==== end mongod log ===="
 }
 
@@ -49,8 +46,6 @@ if ! node /app/docker/init-replset.js; then
   dump_log
   exit 1
 fi
-
-kill "$LOG_TAIL_PID" 2>/dev/null || true
 
 echo "[entrypoint] starting HostelHub..."
 exec npm start

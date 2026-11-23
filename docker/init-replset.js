@@ -7,7 +7,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   for (let attempt = 1; attempt <= 30; attempt++) {
     let client;
     try {
-      client = await MongoClient.connect('mongodb://127.0.0.1:27017', {
+      client = await MongoClient.connect('mongodb://127.0.0.1:27017/?directConnection=true', {
         serverSelectionTimeoutMS: 3000
       });
       const admin = client.db('admin');
